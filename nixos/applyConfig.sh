@@ -1,1 +1,1 @@
-nixos-rebuild switch --flake .#server --target-host 128.39.140.117
+nixos-rebuild switch --flake .#server --target-host 128.39.140.117 --use-remote-sudo

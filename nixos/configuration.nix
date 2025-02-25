@@ -60,11 +60,23 @@
     backend = "docker";
     containers = {
       website = {
+        hostname = "website";
         image = "ghcr.io/gjermundhp02/website:latest";
         ports = [
           "80:3000"
         ];
         pull = "always";
+      };
+      db = {
+        hostname = "db";
+        image = "couchdb:latest";
+        ports = [
+          "5984:5984"
+        ];
+        environment = {
+          COUCHDB_USER = "admin";
+          COUCHDB_PASSWORD = "password";
+        };
       };
     };
   };
