@@ -1,0 +1,1 @@
+nixos-rebuild switch --flake .#server --target-host 128.39.140.117
