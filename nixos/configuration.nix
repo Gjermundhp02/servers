@@ -15,6 +15,8 @@
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
+  nix.settings.trusted-users = [ "gjermund" ];
+
   networking.hostName = "nixos"; # Define your hostname.
 
   # Enable networking
@@ -44,10 +46,9 @@
     openssh.authorizedKeys.keys = let
       authorizedKeys = builtins.fetchurl {
         url = "https://github.com/gjermundhp02.keys";
-        sha256 = "sha256:1gc1c8syv70j25s8g8lifxh9prp9hn4hcf2kdbig4hihsi8hjrgw";
+        sha256 = "sha256:11j5fv71wwy04v2x6qqwn32b1xn0qmx5kips78fazqa5yi2i8w3f";
       };
-    in pkgs.lib.splitString "\n" (builtins.readFile
-    authorizedKeys);
+    in pkgs.lib.splitString "\n" (builtins.readFile authorizedKeys);
   };
 
   environment.systemPackages = with pkgs; [
@@ -63,6 +64,7 @@
         ports = [
           "80:3000"
         ];
+        pull = "always";
       };
     };
   };
